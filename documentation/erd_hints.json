@@ -1,0 +1,78 @@
+{
+  "relationships": [
+    {
+      "from_table": "STTM_CUSTOMER",
+      "from_field": "CUSTOMER_NO",
+      "to_table": "STTM_CUST_ACCOUNT",
+      "to_field": "CUST_NO",
+      "relationship_type": "One-to-Many",
+      "description": "A customer can have multiple accounts."
+    },
+    {
+      "from_table": "STTM_CUST_ACCOUNT",
+      "from_field": "CUST_AC_NO",
+      "to_table": "ACVW_ALL_AC_ENTRIES",
+      "to_field": "CUST_GL",
+      "relationship_type": "One-to-Many",
+      "description": "An account can have multiple entries."
+    },
+    {
+      "from_table": "STTM_CUST_ACCOUNT",
+      "from_field": "CUST_AC_NO",
+      "to_table": "CAVW_ENTRIES",
+      "to_field": "AC_NO",
+      "relationship_type": "One-to-Many",
+      "description": "An account can have multiple transaction entries."
+    },
+    {
+      "from_table": "STTM_TRN_CODE",
+      "from_field": "TRN_CODE",
+      "to_table": "ACVW_ALL_AC_ENTRIES",
+      "to_field": "TRN_CODE",
+      "relationship_type": "One-to-Many",
+      "description": "A transaction code can be associated with multiple entries."
+    },
+    {
+      "from_table": "STTM_CUST_FIN_INFO_CUSTOM",
+      "from_field": "CUSTOMER_NO",
+      "to_table": "STTM_CUSTOMER",
+      "to_field": "CUSTOMER_NO",
+      "relationship_type": "One-to-One",
+      "description": "Each customer has a unique financial information record."
+    },
+    {
+      "from_table": "STTM_CUST_KYC_TYPE_VAL",
+      "from_field": "KYC_TYPE",
+      "to_table": "STTM_CUST_KYC_TYPE_VAL",
+      "to_field": "KYC_TYPE_VALUE",
+      "relationship_type": "One-to-Many",
+      "description": "A KYC type can have multiple values."
+    },
+    {
+      "from_table": "PXTB_IN_TXN",
+      "from_field": "CUSTOMER_NO",
+      "to_table": "STTM_CUSTOMER",
+      "to_field": "CUSTOMER_NO",
+      "relationship_type": "Many-to-One",
+      "description": "Multiple transactions can belong to a single customer."
+    },
+    {
+      "from_table": "PXTB_OUT_TXN",
+      "from_field": "CUSTOMER_NO",
+      "to_table": "STTM_CUSTOMER",
+      "to_field": "CUSTOMER_NO",
+      "relationship_type": "Many-to-One",
+      "description": "Multiple transactions can belong to a single customer."
+    }
+  ],
+  "primary_keys": {
+    "ACVW_ALL_AC_ENTRIES": "AC_NO",
+    "STTM_TRN_CODE": "TRN_CODE",
+    "STTM_CUST_ACCOUNT": "CUST_AC_NO",
+    "STTM_CUSTOMER": "CUSTOMER_NO",
+    "STTM_CUST_FIN_INFO_CUSTOM": "CUSTOMER_NO",
+    "STTM_CUST_KYC_TYPE_VAL": "KYC_TYPE",
+    "PXTB_IN_TXN": "EXTERNAL_REF_NO",
+    "PXTB_OUT_TXN": "EXTERNAL_REF_NO"
+  }
+}

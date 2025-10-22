@@ -1,0 +1,1 @@
+source "/Users/ha/Google Drive/web_browsing_ai/App/local-kuwait-banking-analyzer/backend/venv_multibank/bin/activate"

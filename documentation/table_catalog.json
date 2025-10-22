@@ -1,0 +1,380 @@
+{
+  "ACVW_ALL_AC_ENTRIES": {
+    "fields": [
+      "AC_NO",
+      "BALANCE_UPD",
+      "CUST_GL",
+      "DRCR_IND",
+      "EVENT",
+      "EXTERNAL_REF_NO",
+      "IB",
+      "LCY_AMOUNT",
+      "TRN_CODE",
+      "TRN_DT",
+      "TRN_REF_NO"
+    ],
+    "used_in_reports": [
+      "CBK Cash Deposits",
+      "CBK Selfpay and WAMD Transactions",
+      "CBK Total Credit Transactions"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "STTM_TRN_CODE": {
+    "fields": [
+      "TRN_CODE",
+      "TRN_DESC"
+    ],
+    "used_in_reports": [
+      "CBK Cash Deposits"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "STTM_CUST_ACCOUNT": {
+    "fields": [
+      "CUST_AC_NO",
+      "CUST_NO"
+    ],
+    "used_in_reports": [
+      "CBK Cash Deposits",
+      "CBK Selfpay and WAMD Transactions",
+      "CBK Total Credit Transactions"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "STTM_CUSTOMER": {
+    "fields": [
+      "CUSTOMER_NAME1",
+      "CUSTOMER_NO",
+      "CUSTOMER_TYPE",
+      "FULL_NAME",
+      "KYC_REF_NO",
+      "STAFF"
+    ],
+    "used_in_reports": [
+      "CBK Cash Deposits",
+      "CBK Selfpay and WAMD Transactions",
+      "CBK Total Credit Transactions"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "CAVW_ENTRIES": {
+    "fields": [
+      "AC_NO",
+      "DRCR_IND",
+      "LCY_AMOUNT",
+      "TRN_DT",
+      "TRN_REF_NO",
+      "TXN_NARRATIVE"
+    ],
+    "used_in_reports": [
+      "CBK Selfpay and WAMD Transactions"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "STTM_CUST_FIN_INFO_CUSTOM": {
+    "fields": [
+      "CUSTOMER_NO",
+      "PROFESSION"
+    ],
+    "used_in_reports": [
+      "CBK Selfpay and WAMD Transactions"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "STTM_STATIC_TYPE": {
+    "fields": [
+      "RECORD_STAT",
+      "TYPE",
+      "TYPE_NAME",
+      "TYPE_VALUE"
+    ],
+    "used_in_reports": [
+      "CBK Selfpay and WAMD Transactions"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "STTM_KYC_OTHER_TYPES": {
+    "fields": [
+      "KYC_REFERENCE_NO",
+      "OCCUPATION"
+    ],
+    "used_in_reports": [
+      "CBK Selfpay and WAMD Transactions"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "STTM_CUST_KYC_TYPE_VAL": {
+    "fields": [
+      "KYC_TYPE",
+      "KYC_TYPE_VALUE",
+      "KYC_TYPE_VALUE_DESC"
+    ],
+    "used_in_reports": [
+      "CBK Selfpay and WAMD Transactions"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "EIVW_PENDING_ITEMS_GBK": {
+    "fields": [
+      "BRANCH"
+    ],
+    "used_in_reports": [
+      "EOD Pending Items"
+    ],
+    "connections": [
+      "FCUBSConn_Mirror"
+    ]
+  },
+  "AETM_EOC_GROUP_BRANCHES": {
+    "fields": [
+      "BRANCH_CODE",
+      "GROUP_CODE"
+    ],
+    "used_in_reports": [
+      "EOD Pending Items"
+    ],
+    "connections": [
+      "FCUBSConn_Mirror"
+    ]
+  },
+  "PXTB_IN_TXN": {
+    "fields": [
+      "ACC_WITH_INST2_CODE",
+      "BENEFICIARY1",
+      "BENEFICIARY2",
+      "BENEFICIARY3",
+      "BENEFICIARY4",
+      "BENEFICIARY5",
+      "CHARGE_WHOM",
+      "CR_AC_CCY",
+      "CR_AC_NO",
+      "CR_AMOUNT",
+      "CUSTOMER_NO",
+      "DR_AC_BRN",
+      "DR_AC_CCY",
+      "DR_AC_NO",
+      "DR_AMOUNT",
+      "EXTERNAL_REF_NO",
+      "FILE_REF_NO",
+      "INSTRUCTION_DATE",
+      "INTERMEDIARY2_CODE",
+      "LCY_EQUIVALENT",
+      "NETWORK",
+      "ORDERING_CUSTOMER1",
+      "ORDERING_CUSTOMER2",
+      "ORDERING_CUSTOMER3",
+      "ORG_INSTRUCTION_DATE",
+      "PAYMENT_DETAILS1",
+      "PAYMENT_DETAILS2",
+      "PAYMENT_DETAILS3",
+      "PAYMENT_DETAILS4",
+      "PAYMENT_TYPE",
+      "RECEIVED_DATE_TIME",
+      "RECEIVER",
+      "REGULATORY_DETAILS1",
+      "REGULATORY_DETAILS2",
+      "REGULATORY_DETAILS3",
+      "SNDR_TO_RCVR_INFO1",
+      "SNDR_TO_RCVR_INFO2",
+      "SNDR_TO_RCVR_INFO3",
+      "SNDR_TO_RCVR_INFO4",
+      "SNDR_TO_RCVR_INFO5",
+      "SNDR_TO_RCVR_INFO6",
+      "SOURCE_CODE",
+      "TRANSFER_TYPE",
+      "TXN_AMOUNT",
+      "TXN_CCY",
+      "TXN_REF_NO"
+    ],
+    "used_in_reports": [
+      "Incoming Payments"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "PXTB_IN_TXN_DRIVER": {
+    "fields": [
+      "QUEUE_CODE",
+      "TXN_REF_NO",
+      "TXN_STATUS"
+    ],
+    "used_in_reports": [
+      "Incoming Payments"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "PMTB_MSG_DLY_MSG_IN": {
+    "fields": [
+      "AMOUNT",
+      "CCY",
+      "GENERATED_REF_NO",
+      "MSG_STATUS",
+      "NETWORK_CODE",
+      "PROCESS_STATUS",
+      "RECEIVE_DT_STAMP",
+      "REFERENCE_NO",
+      "SENDER",
+      "SWIFT_MSG_TYPE",
+      "VALUE_DATE"
+    ],
+    "used_in_reports": [
+      "Incoming Payments"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "PMTB_ACC_ENTRY_QUEUE_DETAILS": {
+    "fields": [
+      "HANDOFF_STATUS",
+      "TXN_REF_NO"
+    ],
+    "used_in_reports": [
+      "Incoming Payments"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "PQTB_ACC_ENTRY_QUEUE": {
+    "fields": [
+      "ERR_DESC",
+      "TXN_REF_NO"
+    ],
+    "used_in_reports": [
+      "Incoming Payments"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "PXTB_OUT_TXN": {
+    "fields": [
+      "ACC_WITH_INST2_CODE",
+      "BENEFICIARY1",
+      "BENEFICIARY2",
+      "BENEFICIARY3",
+      "BENEFICIARY4",
+      "BENEFICIARY5",
+      "CHARGE_WHOM",
+      "CR_AC_CCY",
+      "CR_AC_NO",
+      "CR_AMOUNT",
+      "CUSTOMER_NO",
+      "DR_AC_BRN",
+      "DR_AC_CCY",
+      "DR_AC_NO",
+      "DR_AMOUNT",
+      "EXTERNAL_REF_NO",
+      "FILE_REF_NO",
+      "INSTRUCTION_DATE",
+      "INTERMEDIARY2_CODE",
+      "LCY_EQUIVALENT",
+      "NETWORK",
+      "ORDERING_CUSTOMER1",
+      "ORDERING_CUSTOMER2",
+      "ORDERING_CUSTOMER3",
+      "ORG_INSTRUCTION_DATE",
+      "PAYMENT_DETAILS1",
+      "PAYMENT_DETAILS2",
+      "PAYMENT_DETAILS3",
+      "PAYMENT_DETAILS4",
+      "PAYMENT_TYPE",
+      "RECEIVED_DATE_TIME",
+      "RECEIVER",
+      "REGULATORY_DETAILS1",
+      "REGULATORY_DETAILS2",
+      "REGULATORY_DETAILS3",
+      "SNDR_TO_RCVR_INFO1",
+      "SNDR_TO_RCVR_INFO2",
+      "SNDR_TO_RCVR_INFO3",
+      "SNDR_TO_RCVR_INFO4",
+      "SNDR_TO_RCVR_INFO5",
+      "SNDR_TO_RCVR_INFO6",
+      "SOURCE_CODE",
+      "TRANSFER_TYPE",
+      "TXN_AMOUNT",
+      "TXN_CCY",
+      "TXN_REF_NO"
+    ],
+    "used_in_reports": [
+      "Incoming Payments"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "PXTB_OUT_TXN_DRIVER": {
+    "fields": [
+      "QUEUE_CODE",
+      "TXN_REF_NO",
+      "TXN_STATUS"
+    ],
+    "used_in_reports": [
+      "Incoming Payments"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "PQTB_STP_QUEUE": {
+    "fields": [
+      "AUTH_STAT",
+      "CURRENT_STATUS",
+      "TXN_REF_NO"
+    ],
+    "used_in_reports": [
+      "Incoming Payments"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "sttm_customer": {
+    "fields": [
+      "CUSTOMER_CATEGORY",
+      "CUSTOMER_NAME1",
+      "CUSTOMER_NO"
+    ],
+    "used_in_reports": [
+      "Incoming Payments"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  },
+  "sttm_cust_account": {
+    "fields": [
+      "AC_DESC",
+      "CUST_AC_NO"
+    ],
+    "used_in_reports": [
+      "Incoming Payments"
+    ],
+    "connections": [
+      "FCUBS_Reporting"
+    ]
+  }
+}

@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Dictionary - AML/FCUBS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .stat-card p {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .toc {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .toc h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .toc-item {
+            padding: 10px 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .toc-item:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .table-section {
+            margin-bottom: 40px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .table-header {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            padding: 20px 25px;
+        }
+        
+        .table-header h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .table-meta {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .table-body {
+            padding: 25px;
+        }
+        
+        .field-list {
+            margin-bottom: 20px;
+        }
+        
+        .field-item {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-left: 3px solid #667eea;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+        }
+        
+        .field-item.pk {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+        
+        .field-item.fk {
+            border-left-color: #10b981;
+            background: #ecfdf5;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+            text-transform: uppercase;
+        }
+        
+        .badge-pk {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .badge-fk {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .used-in {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .used-in h4 {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .report-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .report-tag {
+            padding: 6px 12px;
+            background: #e0e7ff;
+            color: #3730a3;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .relationships {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        
+        .relationships h4 {
+            font-size: 14px;
+            color: #78350f;
+            margin-bottom: 10px;
+        }
+        
+        .relationship-item {
+            font-size: 13px;
+            color: #451a03;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Data Dictionary</h1>
+            <p>AML/FCUBS Database - Complete Table and Field Reference</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Tables</h3>
+                <p>21</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Fields</h3>
+                <p>162</p>
+            </div>
+            <div class="stat-card">
+                <h3>Relationships</h3>
+                <p>8</p>
+            </div>
+        </div>
+        
+        <div class="toc">
+            <h2>📑 Table of Contents (Click to jump)</h2>
+            <div class="toc-grid">
+                <div class="toc-item" onclick="location.href='#table-ACVW_ALL_AC_ENTRIES'">ACVW_ALL_AC_ENTRIES</div>
+                <div class="toc-item" onclick="location.href='#table-AETM_EOC_GROUP_BRANCHES'">AETM_EOC_GROUP_BRANCHES</div>
+                <div class="toc-item" onclick="location.href='#table-CAVW_ENTRIES'">CAVW_ENTRIES</div>
+                <div class="toc-item" onclick="location.href='#table-EIVW_PENDING_ITEMS_GBK'">EIVW_PENDING_ITEMS_GBK</div>
+                <div class="toc-item" onclick="location.href='#table-PMTB_ACC_ENTRY_QUEUE_DETAILS'">PMTB_ACC_ENTRY_QUEUE_DETAILS</div>
+                <div class="toc-item" onclick="location.href='#table-PMTB_MSG_DLY_MSG_IN'">PMTB_MSG_DLY_MSG_IN</div>
+                <div class="toc-item" onclick="location.href='#table-PQTB_ACC_ENTRY_QUEUE'">PQTB_ACC_ENTRY_QUEUE</div>
+                <div class="toc-item" onclick="location.href='#table-PQTB_STP_QUEUE'">PQTB_STP_QUEUE</div>
+                <div class="toc-item" onclick="location.href='#table-PXTB_IN_TXN'">PXTB_IN_TXN</div>
+                <div class="toc-item" onclick="location.href='#table-PXTB_IN_TXN_DRIVER'">PXTB_IN_TXN_DRIVER</div>
+                <div class="toc-item" onclick="location.href='#table-PXTB_OUT_TXN'">PXTB_OUT_TXN</div>
+                <div class="toc-item" onclick="location.href='#table-PXTB_OUT_TXN_DRIVER'">PXTB_OUT_TXN_DRIVER</div>
+                <div class="toc-item" onclick="location.href='#table-STTM_CUSTOMER'">STTM_CUSTOMER</div>
+                <div class="toc-item" onclick="location.href='#table-STTM_CUST_ACCOUNT'">STTM_CUST_ACCOUNT</div>
+                <div class="toc-item" onclick="location.href='#table-STTM_CUST_FIN_INFO_CUSTOM'">STTM_CUST_FIN_INFO_CUSTOM</div>
+                <div class="toc-item" onclick="location.href='#table-STTM_CUST_KYC_TYPE_VAL'">STTM_CUST_KYC_TYPE_VAL</div>
+                <div class="toc-item" onclick="location.href='#table-STTM_KYC_OTHER_TYPES'">STTM_KYC_OTHER_TYPES</div>
+                <div class="toc-item" onclick="location.href='#table-STTM_STATIC_TYPE'">STTM_STATIC_TYPE</div>
+                <div class="toc-item" onclick="location.href='#table-STTM_TRN_CODE'">STTM_TRN_CODE</div>
+                <div class="toc-item" onclick="location.href='#table-sttm_cust_account'">sttm_cust_account</div>
+                <div class="toc-item" onclick="location.href='#table-sttm_customer'">sttm_customer</div>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <div class="table-section" id="table-ACVW_ALL_AC_ENTRIES">
+                <div class="table-header">
+                    <h3>ACVW_ALL_AC_ENTRIES</h3>
+                    <div class="table-meta">
+                        11 fields • Used in 3 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item pk">AC_NO<span class="badge badge-pk">Primary Key</span></div>
+                        <div class="field-item">BALANCE_UPD</div>
+                        <div class="field-item">CUST_GL</div>
+                        <div class="field-item">DRCR_IND</div>
+                        <div class="field-item">EVENT</div>
+                        <div class="field-item">EXTERNAL_REF_NO</div>
+                        <div class="field-item">IB</div>
+                        <div class="field-item">LCY_AMOUNT</div>
+                        <div class="field-item">TRN_CODE</div>
+                        <div class="field-item">TRN_DT</div>
+                        <div class="field-item">TRN_REF_NO</div>
+
+                    </div>
+                    <div class="relationships">
+                        <h4>🔗 Relationships:</h4>
+                        <div class="relationship-item">
+                            → STTM_CUST_ACCOUNT.CUST_AC_NO → ACVW_ALL_AC_ENTRIES.CUST_GL 
+                            (One-to-Many)
+                        </div>
+                        <div class="relationship-item">
+                            → STTM_TRN_CODE.TRN_CODE → ACVW_ALL_AC_ENTRIES.TRN_CODE 
+                            (One-to-Many)
+                        </div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">CBK Cash Deposits</span>
+                            <span class="report-tag">CBK Selfpay and WAMD Transactions</span>
+                            <span class="report-tag">CBK Total Credit Transactions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-AETM_EOC_GROUP_BRANCHES">
+                <div class="table-header">
+                    <h3>AETM_EOC_GROUP_BRANCHES</h3>
+                    <div class="table-meta">
+                        2 fields • Used in 1 report(s) • 
+                        Connection: FCUBSConn_Mirror
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">BRANCH_CODE</div>
+                        <div class="field-item">GROUP_CODE</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">EOD Pending Items</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-CAVW_ENTRIES">
+                <div class="table-header">
+                    <h3>CAVW_ENTRIES</h3>
+                    <div class="table-meta">
+                        6 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">AC_NO</div>
+                        <div class="field-item">DRCR_IND</div>
+                        <div class="field-item">LCY_AMOUNT</div>
+                        <div class="field-item">TRN_DT</div>
+                        <div class="field-item">TRN_REF_NO</div>
+                        <div class="field-item">TXN_NARRATIVE</div>
+
+                    </div>
+                    <div class="relationships">
+                        <h4>🔗 Relationships:</h4>
+                        <div class="relationship-item">
+                            → STTM_CUST_ACCOUNT.CUST_AC_NO → CAVW_ENTRIES.AC_NO 
+                            (One-to-Many)
+                        </div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">CBK Selfpay and WAMD Transactions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-EIVW_PENDING_ITEMS_GBK">
+                <div class="table-header">
+                    <h3>EIVW_PENDING_ITEMS_GBK</h3>
+                    <div class="table-meta">
+                        1 fields • Used in 1 report(s) • 
+                        Connection: FCUBSConn_Mirror
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">BRANCH</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">EOD Pending Items</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-PMTB_ACC_ENTRY_QUEUE_DETAILS">
+                <div class="table-header">
+                    <h3>PMTB_ACC_ENTRY_QUEUE_DETAILS</h3>
+                    <div class="table-meta">
+                        2 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">HANDOFF_STATUS</div>
+                        <div class="field-item">TXN_REF_NO</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">Incoming Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-PMTB_MSG_DLY_MSG_IN">
+                <div class="table-header">
+                    <h3>PMTB_MSG_DLY_MSG_IN</h3>
+                    <div class="table-meta">
+                        11 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">AMOUNT</div>
+                        <div class="field-item">CCY</div>
+                        <div class="field-item">GENERATED_REF_NO</div>
+                        <div class="field-item">MSG_STATUS</div>
+                        <div class="field-item">NETWORK_CODE</div>
+                        <div class="field-item">PROCESS_STATUS</div>
+                        <div class="field-item">RECEIVE_DT_STAMP</div>
+                        <div class="field-item">REFERENCE_NO</div>
+                        <div class="field-item">SENDER</div>
+                        <div class="field-item">SWIFT_MSG_TYPE</div>
+                        <div class="field-item">VALUE_DATE</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">Incoming Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-PQTB_ACC_ENTRY_QUEUE">
+                <div class="table-header">
+                    <h3>PQTB_ACC_ENTRY_QUEUE</h3>
+                    <div class="table-meta">
+                        2 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">ERR_DESC</div>
+                        <div class="field-item">TXN_REF_NO</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">Incoming Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-PQTB_STP_QUEUE">
+                <div class="table-header">
+                    <h3>PQTB_STP_QUEUE</h3>
+                    <div class="table-meta">
+                        3 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">AUTH_STAT</div>
+                        <div class="field-item">CURRENT_STATUS</div>
+                        <div class="field-item">TXN_REF_NO</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">Incoming Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-PXTB_IN_TXN">
+                <div class="table-header">
+                    <h3>PXTB_IN_TXN</h3>
+                    <div class="table-meta">
+                        46 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">ACC_WITH_INST2_CODE</div>
+                        <div class="field-item">BENEFICIARY1</div>
+                        <div class="field-item">BENEFICIARY2</div>
+                        <div class="field-item">BENEFICIARY3</div>
+                        <div class="field-item">BENEFICIARY4</div>
+                        <div class="field-item">BENEFICIARY5</div>
+                        <div class="field-item">CHARGE_WHOM</div>
+                        <div class="field-item">CR_AC_CCY</div>
+                        <div class="field-item">CR_AC_NO</div>
+                        <div class="field-item">CR_AMOUNT</div>
+                        <div class="field-item fk">CUSTOMER_NO<span class="badge badge-fk">Foreign Key</span></div>
+                        <div class="field-item">DR_AC_BRN</div>
+                        <div class="field-item">DR_AC_CCY</div>
+                        <div class="field-item">DR_AC_NO</div>
+                        <div class="field-item">DR_AMOUNT</div>
+                        <div class="field-item pk">EXTERNAL_REF_NO<span class="badge badge-pk">Primary Key</span></div>
+                        <div class="field-item">FILE_REF_NO</div>
+                        <div class="field-item">INSTRUCTION_DATE</div>
+                        <div class="field-item">INTERMEDIARY2_CODE</div>
+                        <div class="field-item">LCY_EQUIVALENT</div>
+                        <div class="field-item">NETWORK</div>
+                        <div class="field-item">ORDERING_CUSTOMER1</div>
+                        <div class="field-item">ORDERING_CUSTOMER2</div>
+                        <div class="field-item">ORDERING_CUSTOMER3</div>
+                        <div class="field-item">ORG_INSTRUCTION_DATE</div>
+                        <div class="field-item">PAYMENT_DETAILS1</div>
+                        <div class="field-item">PAYMENT_DETAILS2</div>
+                        <div class="field-item">PAYMENT_DETAILS3</div>
+                        <div class="field-item">PAYMENT_DETAILS4</div>
+                        <div class="field-item">PAYMENT_TYPE</div>
+                        <div class="field-item">RECEIVED_DATE_TIME</div>
+                        <div class="field-item">RECEIVER</div>
+                        <div class="field-item">REGULATORY_DETAILS1</div>
+                        <div class="field-item">REGULATORY_DETAILS2</div>
+                        <div class="field-item">REGULATORY_DETAILS3</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO1</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO2</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO3</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO4</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO5</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO6</div>
+                        <div class="field-item">SOURCE_CODE</div>
+                        <div class="field-item">TRANSFER_TYPE</div>
+                        <div class="field-item">TXN_AMOUNT</div>
+                        <div class="field-item">TXN_CCY</div>
+                        <div class="field-item">TXN_REF_NO</div>
+
+                    </div>
+                    <div class="relationships">
+                        <h4>🔗 Relationships:</h4>
+                        <div class="relationship-item">
+                            → PXTB_IN_TXN.CUSTOMER_NO → STTM_CUSTOMER.CUSTOMER_NO 
+                            (Many-to-One)
+                        </div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">Incoming Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-PXTB_IN_TXN_DRIVER">
+                <div class="table-header">
+                    <h3>PXTB_IN_TXN_DRIVER</h3>
+                    <div class="table-meta">
+                        3 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">QUEUE_CODE</div>
+                        <div class="field-item">TXN_REF_NO</div>
+                        <div class="field-item">TXN_STATUS</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">Incoming Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-PXTB_OUT_TXN">
+                <div class="table-header">
+                    <h3>PXTB_OUT_TXN</h3>
+                    <div class="table-meta">
+                        46 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">ACC_WITH_INST2_CODE</div>
+                        <div class="field-item">BENEFICIARY1</div>
+                        <div class="field-item">BENEFICIARY2</div>
+                        <div class="field-item">BENEFICIARY3</div>
+                        <div class="field-item">BENEFICIARY4</div>
+                        <div class="field-item">BENEFICIARY5</div>
+                        <div class="field-item">CHARGE_WHOM</div>
+                        <div class="field-item">CR_AC_CCY</div>
+                        <div class="field-item">CR_AC_NO</div>
+                        <div class="field-item">CR_AMOUNT</div>
+                        <div class="field-item fk">CUSTOMER_NO<span class="badge badge-fk">Foreign Key</span></div>
+                        <div class="field-item">DR_AC_BRN</div>
+                        <div class="field-item">DR_AC_CCY</div>
+                        <div class="field-item">DR_AC_NO</div>
+                        <div class="field-item">DR_AMOUNT</div>
+                        <div class="field-item pk">EXTERNAL_REF_NO<span class="badge badge-pk">Primary Key</span></div>
+                        <div class="field-item">FILE_REF_NO</div>
+                        <div class="field-item">INSTRUCTION_DATE</div>
+                        <div class="field-item">INTERMEDIARY2_CODE</div>
+                        <div class="field-item">LCY_EQUIVALENT</div>
+                        <div class="field-item">NETWORK</div>
+                        <div class="field-item">ORDERING_CUSTOMER1</div>
+                        <div class="field-item">ORDERING_CUSTOMER2</div>
+                        <div class="field-item">ORDERING_CUSTOMER3</div>
+                        <div class="field-item">ORG_INSTRUCTION_DATE</div>
+                        <div class="field-item">PAYMENT_DETAILS1</div>
+                        <div class="field-item">PAYMENT_DETAILS2</div>
+                        <div class="field-item">PAYMENT_DETAILS3</div>
+                        <div class="field-item">PAYMENT_DETAILS4</div>
+                        <div class="field-item">PAYMENT_TYPE</div>
+                        <div class="field-item">RECEIVED_DATE_TIME</div>
+                        <div class="field-item">RECEIVER</div>
+                        <div class="field-item">REGULATORY_DETAILS1</div>
+                        <div class="field-item">REGULATORY_DETAILS2</div>
+                        <div class="field-item">REGULATORY_DETAILS3</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO1</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO2</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO3</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO4</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO5</div>
+                        <div class="field-item">SNDR_TO_RCVR_INFO6</div>
+                        <div class="field-item">SOURCE_CODE</div>
+                        <div class="field-item">TRANSFER_TYPE</div>
+                        <div class="field-item">TXN_AMOUNT</div>
+                        <div class="field-item">TXN_CCY</div>
+                        <div class="field-item">TXN_REF_NO</div>
+
+                    </div>
+                    <div class="relationships">
+                        <h4>🔗 Relationships:</h4>
+                        <div class="relationship-item">
+                            → PXTB_OUT_TXN.CUSTOMER_NO → STTM_CUSTOMER.CUSTOMER_NO 
+                            (Many-to-One)
+                        </div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">Incoming Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-PXTB_OUT_TXN_DRIVER">
+                <div class="table-header">
+                    <h3>PXTB_OUT_TXN_DRIVER</h3>
+                    <div class="table-meta">
+                        3 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">QUEUE_CODE</div>
+                        <div class="field-item">TXN_REF_NO</div>
+                        <div class="field-item">TXN_STATUS</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">Incoming Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-STTM_CUSTOMER">
+                <div class="table-header">
+                    <h3>STTM_CUSTOMER</h3>
+                    <div class="table-meta">
+                        6 fields • Used in 3 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">CUSTOMER_NAME1</div>
+                        <div class="field-item pk">CUSTOMER_NO<span class="badge badge-pk">Primary Key</span></div>
+                        <div class="field-item">CUSTOMER_TYPE</div>
+                        <div class="field-item">FULL_NAME</div>
+                        <div class="field-item">KYC_REF_NO</div>
+                        <div class="field-item">STAFF</div>
+
+                    </div>
+                    <div class="relationships">
+                        <h4>🔗 Relationships:</h4>
+                        <div class="relationship-item">
+                            → STTM_CUSTOMER.CUSTOMER_NO → STTM_CUST_ACCOUNT.CUST_NO 
+                            (One-to-Many)
+                        </div>
+                        <div class="relationship-item">
+                            → STTM_CUST_FIN_INFO_CUSTOM.CUSTOMER_NO → STTM_CUSTOMER.CUSTOMER_NO 
+                            (One-to-One)
+                        </div>
+                        <div class="relationship-item">
+                            → PXTB_IN_TXN.CUSTOMER_NO → STTM_CUSTOMER.CUSTOMER_NO 
+                            (Many-to-One)
+                        </div>
+                        <div class="relationship-item">
+                            → PXTB_OUT_TXN.CUSTOMER_NO → STTM_CUSTOMER.CUSTOMER_NO 
+                            (Many-to-One)
+                        </div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">CBK Cash Deposits</span>
+                            <span class="report-tag">CBK Selfpay and WAMD Transactions</span>
+                            <span class="report-tag">CBK Total Credit Transactions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-STTM_CUST_ACCOUNT">
+                <div class="table-header">
+                    <h3>STTM_CUST_ACCOUNT</h3>
+                    <div class="table-meta">
+                        2 fields • Used in 3 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item pk">CUST_AC_NO<span class="badge badge-pk">Primary Key</span></div>
+                        <div class="field-item">CUST_NO</div>
+
+                    </div>
+                    <div class="relationships">
+                        <h4>🔗 Relationships:</h4>
+                        <div class="relationship-item">
+                            → STTM_CUSTOMER.CUSTOMER_NO → STTM_CUST_ACCOUNT.CUST_NO 
+                            (One-to-Many)
+                        </div>
+                        <div class="relationship-item">
+                            → STTM_CUST_ACCOUNT.CUST_AC_NO → ACVW_ALL_AC_ENTRIES.CUST_GL 
+                            (One-to-Many)
+                        </div>
+                        <div class="relationship-item">
+                            → STTM_CUST_ACCOUNT.CUST_AC_NO → CAVW_ENTRIES.AC_NO 
+                            (One-to-Many)
+                        </div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">CBK Cash Deposits</span>
+                            <span class="report-tag">CBK Selfpay and WAMD Transactions</span>
+                            <span class="report-tag">CBK Total Credit Transactions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-STTM_CUST_FIN_INFO_CUSTOM">
+                <div class="table-header">
+                    <h3>STTM_CUST_FIN_INFO_CUSTOM</h3>
+                    <div class="table-meta">
+                        2 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item pk">CUSTOMER_NO<span class="badge badge-pk">Primary Key</span></div>
+                        <div class="field-item">PROFESSION</div>
+
+                    </div>
+                    <div class="relationships">
+                        <h4>🔗 Relationships:</h4>
+                        <div class="relationship-item">
+                            → STTM_CUST_FIN_INFO_CUSTOM.CUSTOMER_NO → STTM_CUSTOMER.CUSTOMER_NO 
+                            (One-to-One)
+                        </div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">CBK Selfpay and WAMD Transactions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-STTM_CUST_KYC_TYPE_VAL">
+                <div class="table-header">
+                    <h3>STTM_CUST_KYC_TYPE_VAL</h3>
+                    <div class="table-meta">
+                        3 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item pk">KYC_TYPE<span class="badge badge-pk">Primary Key</span></div>
+                        <div class="field-item">KYC_TYPE_VALUE</div>
+                        <div class="field-item">KYC_TYPE_VALUE_DESC</div>
+
+                    </div>
+                    <div class="relationships">
+                        <h4>🔗 Relationships:</h4>
+                        <div class="relationship-item">
+                            → STTM_CUST_KYC_TYPE_VAL.KYC_TYPE → STTM_CUST_KYC_TYPE_VAL.KYC_TYPE_VALUE 
+                            (One-to-Many)
+                        </div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">CBK Selfpay and WAMD Transactions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-STTM_KYC_OTHER_TYPES">
+                <div class="table-header">
+                    <h3>STTM_KYC_OTHER_TYPES</h3>
+                    <div class="table-meta">
+                        2 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">KYC_REFERENCE_NO</div>
+                        <div class="field-item">OCCUPATION</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">CBK Selfpay and WAMD Transactions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-STTM_STATIC_TYPE">
+                <div class="table-header">
+                    <h3>STTM_STATIC_TYPE</h3>
+                    <div class="table-meta">
+                        4 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">RECORD_STAT</div>
+                        <div class="field-item">TYPE</div>
+                        <div class="field-item">TYPE_NAME</div>
+                        <div class="field-item">TYPE_VALUE</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">CBK Selfpay and WAMD Transactions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-STTM_TRN_CODE">
+                <div class="table-header">
+                    <h3>STTM_TRN_CODE</h3>
+                    <div class="table-meta">
+                        2 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item pk">TRN_CODE<span class="badge badge-pk">Primary Key</span></div>
+                        <div class="field-item">TRN_DESC</div>
+
+                    </div>
+                    <div class="relationships">
+                        <h4>🔗 Relationships:</h4>
+                        <div class="relationship-item">
+                            → STTM_TRN_CODE.TRN_CODE → ACVW_ALL_AC_ENTRIES.TRN_CODE 
+                            (One-to-Many)
+                        </div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">CBK Cash Deposits</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-sttm_cust_account">
+                <div class="table-header">
+                    <h3>sttm_cust_account</h3>
+                    <div class="table-meta">
+                        2 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">AC_DESC</div>
+                        <div class="field-item">CUST_AC_NO</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">Incoming Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section" id="table-sttm_customer">
+                <div class="table-header">
+                    <h3>sttm_customer</h3>
+                    <div class="table-meta">
+                        3 fields • Used in 1 report(s) • 
+                        Connection: FCUBS_Reporting
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="field-list">
+                        <h4 style="margin-bottom: 10px; color: #666;">Fields:</h4>
+                        <div class="field-item">CUSTOMER_CATEGORY</div>
+                        <div class="field-item">CUSTOMER_NAME1</div>
+                        <div class="field-item">CUSTOMER_NO</div>
+                    </div>
+
+                    <div class="used-in">
+                        <h4>Used in Reports:</h4>
+                        <div class="report-tags">
+                            <span class="report-tag">Incoming Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Reference Guide - AML/FCUBS</title>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { background: white !important; padding: 0 !important; }
+            .container { box-shadow: none !important; }
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .print-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .print-btn:hover {
+            background: #5568d3;
+        }
+        
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .table-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            page-break-inside: avoid;
+        }
+        
+        .table-card-header {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        .table-card-body {
+            padding: 15px;
+            font-size: 13px;
+        }
+        
+        .field-count {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .field-sample {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 11px;
+            line-height: 1.6;
+            max-height: 150px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ Quick Reference Guide</h1>
+            <p>AML/FCUBS Database Tables - 21 Tables</p>
+            <button class="print-btn no-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+        </div>
+        
+        <div class="table-grid">
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    ACVW_ALL_AC_ENTRIES
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">11 fields</div>
+                    <div class="field-sample">AC_NO, BALANCE_UPD, CUST_GL, DRCR_IND, EVENT, EXTERNAL_REF_NO, IB, LCY_AMOUNT, TRN_CODE, TRN_DT, ... (+1 more)</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    AETM_EOC_GROUP_BRANCHES
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">2 fields</div>
+                    <div class="field-sample">BRANCH_CODE, GROUP_CODE</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    CAVW_ENTRIES
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">6 fields</div>
+                    <div class="field-sample">AC_NO, DRCR_IND, LCY_AMOUNT, TRN_DT, TRN_REF_NO, TXN_NARRATIVE</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    EIVW_PENDING_ITEMS_GBK
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">1 fields</div>
+                    <div class="field-sample">BRANCH</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    PMTB_ACC_ENTRY_QUEUE_DETAILS
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">2 fields</div>
+                    <div class="field-sample">HANDOFF_STATUS, TXN_REF_NO</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    PMTB_MSG_DLY_MSG_IN
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">11 fields</div>
+                    <div class="field-sample">AMOUNT, CCY, GENERATED_REF_NO, MSG_STATUS, NETWORK_CODE, PROCESS_STATUS, RECEIVE_DT_STAMP, REFERENCE_NO, SENDER, SWIFT_MSG_TYPE, ... (+1 more)</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    PQTB_ACC_ENTRY_QUEUE
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">2 fields</div>
+                    <div class="field-sample">ERR_DESC, TXN_REF_NO</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    PQTB_STP_QUEUE
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">3 fields</div>
+                    <div class="field-sample">AUTH_STAT, CURRENT_STATUS, TXN_REF_NO</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    PXTB_IN_TXN
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">46 fields</div>
+                    <div class="field-sample">ACC_WITH_INST2_CODE, BENEFICIARY1, BENEFICIARY2, BENEFICIARY3, BENEFICIARY4, BENEFICIARY5, CHARGE_WHOM, CR_AC_CCY, CR_AC_NO, CR_AMOUNT, ... (+36 more)</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    PXTB_IN_TXN_DRIVER
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">3 fields</div>
+                    <div class="field-sample">QUEUE_CODE, TXN_REF_NO, TXN_STATUS</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    PXTB_OUT_TXN
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">46 fields</div>
+                    <div class="field-sample">ACC_WITH_INST2_CODE, BENEFICIARY1, BENEFICIARY2, BENEFICIARY3, BENEFICIARY4, BENEFICIARY5, CHARGE_WHOM, CR_AC_CCY, CR_AC_NO, CR_AMOUNT, ... (+36 more)</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    PXTB_OUT_TXN_DRIVER
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">3 fields</div>
+                    <div class="field-sample">QUEUE_CODE, TXN_REF_NO, TXN_STATUS</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    STTM_CUSTOMER
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">6 fields</div>
+                    <div class="field-sample">CUSTOMER_NAME1, CUSTOMER_NO, CUSTOMER_TYPE, FULL_NAME, KYC_REF_NO, STAFF</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    STTM_CUST_ACCOUNT
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">2 fields</div>
+                    <div class="field-sample">CUST_AC_NO, CUST_NO</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    STTM_CUST_FIN_INFO_CUSTOM
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">2 fields</div>
+                    <div class="field-sample">CUSTOMER_NO, PROFESSION</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    STTM_CUST_KYC_TYPE_VAL
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">3 fields</div>
+                    <div class="field-sample">KYC_TYPE, KYC_TYPE_VALUE, KYC_TYPE_VALUE_DESC</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    STTM_KYC_OTHER_TYPES
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">2 fields</div>
+                    <div class="field-sample">KYC_REFERENCE_NO, OCCUPATION</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    STTM_STATIC_TYPE
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">4 fields</div>
+                    <div class="field-sample">RECORD_STAT, TYPE, TYPE_NAME, TYPE_VALUE</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    STTM_TRN_CODE
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">2 fields</div>
+                    <div class="field-sample">TRN_CODE, TRN_DESC</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    sttm_cust_account
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">2 fields</div>
+                    <div class="field-sample">AC_DESC, CUST_AC_NO</div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-card-header">
+                    sttm_customer
+                </div>
+                <div class="table-card-body">
+                    <div class="field-count">3 fields</div>
+                    <div class="field-sample">CUSTOMER_CATEGORY, CUSTOMER_NAME1, CUSTOMER_NO</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <script>
+        // Auto-open print dialog after 1 second
+        // setTimeout(() => { window.print(); }, 1000);
+    </script>
+</body>
+</html>
